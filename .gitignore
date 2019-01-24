@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/lda.sln
+/lda/main.cpp
+/lda/lda.vcxproj.filters
+/lda/lda.vcxproj
