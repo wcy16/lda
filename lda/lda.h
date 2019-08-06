@@ -29,7 +29,7 @@ void lda(int topics, int iterations,
     auto nk = std::vector<int>(topics, 0);
     nkt = std::vector<std::vector<int>>(topics, std::vector<int>(word_count, 0));
 
-    auto zmn = std::map<int, std::vector<int>>();
+    auto zmn = std::map<int, std::vector<int>>();  // topic for every word
     for (auto it = docs.begin(); it != docs.end(); it++) {
         nm[it->first] = 0;
         nmk[it->first] = std::vector<int>(topics, 0);
@@ -95,7 +95,7 @@ void lda(int topics, int iterations,
                 //double tmp2 = tmp1 * nmk[it->first][z];
 
                 for (int j = 0; j != topics; j++) {
-                    p[j] = (beta + nkt[j][*itw]) * (nmk[it->first][j] + alpha) / (nk[j] + alpha);
+                    p[j] = (beta + nkt[j][*itw]) * (nmk[it->first][j] + alpha) / (nk[j] + word_count * beta);
                 }
 
                 std::discrete_distribution<int> discrete(p.begin(), p.end());
